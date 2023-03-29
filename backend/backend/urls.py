@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+#A function to change the default Text in the DJango Admin Portal
+def change_admin_default_settings():
+    admin.site.site_header = 'Online Banking Portal'# default: "Django Administration"
+    admin.site.index_title = 'Features area'   # default: "Site administration"
+    admin.site.site_title = 'Online Banking  Portal' # default: "Django site admin"
+change_admin_default_settings()
