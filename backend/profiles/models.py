@@ -7,7 +7,7 @@ class UsersModel(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    phone_number = PhoneNumberField(default='256700000000')
+    phone_number = PhoneNumberField(unique=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(auto_now_add=True)
