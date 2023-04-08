@@ -11,7 +11,7 @@ const icons = {
 const pages = {
     id: 'pages',
     title: 'Pages',
-    caption: 'Pages Caption',
+    // caption: 'Pages Caption',
     type: 'group',
     children: [
         {
@@ -35,6 +35,36 @@ const pages = {
                     url: '/pages/register/register3',
                     target: true
                 }
+            ]
+        },
+        {
+            id: 'authentication',
+            title: 'System Admin',
+            type: 'collapse',
+            icon: icons.IconKey,
+
+            children: [
+                {
+                    id: 'login3',
+                    title: 'User Accounts',
+                    type: 'item',
+                    url: '/pages/login/login3',
+                    target: true
+                },
+                {
+                    id: 'register3',
+                    title: 'Transactions',
+                    type: 'item',
+                    url: '/pages/register/register3',
+                    target: true
+                },
+                {
+                    id: 'register3',
+                    title: 'Change Passwords',
+                    type: 'item',
+                    url: '/pages/register/register3',
+                    target: true
+                },
             ]
         }
     ]

@@ -9,16 +9,16 @@ const icons = {
     IconWindmill
 };
 
-// ==============================|| UTILITIES MENU ITEMS ||============================== //
+// ==============================|| ACCOUNT MENU ITEMS ||============================== //
 
-const utilities = {
-    id: 'utilities',
-    title: 'Utilities',
+const account = {
+    id: 'account',
+    title: 'Accounts',
     type: 'group',
     children: [
         {
             id: 'util-typography',
-            title: 'Typography',
+            title: 'Deposit',
             type: 'item',
             url: '/utils/util-typography',
             icon: icons.IconTypography,
@@ -26,7 +26,7 @@ const utilities = {
         },
         {
             id: 'util-color',
-            title: 'Color',
+            title: 'Withdraw',
             type: 'item',
             url: '/utils/util-color',
             icon: icons.IconPalette,
@@ -34,7 +34,7 @@ const utilities = {
         },
         {
             id: 'util-shadow',
-            title: 'Shadow',
+            title: 'Reports',
             type: 'item',
             url: '/utils/util-shadow',
             icon: icons.IconShadow,
@@ -42,20 +42,20 @@ const utilities = {
         },
         {
             id: 'icons',
-            title: 'Icons',
+            title: 'Mobile Money',
             type: 'collapse',
             icon: icons.IconWindmill,
             children: [
                 {
                     id: 'tabler-icons',
-                    title: 'Tabler Icons',
+                    title: 'Airtel Money',
                     type: 'item',
                     url: '/icons/tabler-icons',
                     breadcrumbs: false
                 },
                 {
                     id: 'material-icons',
-                    title: 'Material Icons',
+                    title: 'MTN MoMo',
                     type: 'item',
                     url: '/icons/material-icons',
                     breadcrumbs: false
@@ -65,4 +65,4 @@ const utilities = {
     ]
 };
 
-export default utilities;
+export default account;
