@@ -13,7 +13,7 @@ import os #Import the OS when Setting the Media Root
 from pathlib import Path
 from datetime import timedelta
 #Variable to change incase of deployment to webserver
-live_deploy = True
+live_deploy = False
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -89,13 +89,33 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if live_deploy == True:
+    DEBUG = True
+    ALLOWED_HOSTS = ['*']
+    DATABASES = {
+        'default': 
+        {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'db_banking_app',
+            'USER': 'root',
+            'PASSWORD': '#Marl2023',
+            'HOST': 'localhost',
+            'PORT': '3306',
+        }
     }
-}
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+elif live_deploy == False:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
