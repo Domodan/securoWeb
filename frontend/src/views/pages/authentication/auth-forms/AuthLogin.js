@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -43,12 +44,14 @@ const FirebaseLogin = ({ ...others }) => {
     const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
     const customization = useSelector((state) => state.customization);
     const [checked, setChecked] = useState(true);
+    const navigate = useNavigate();
 
     const googleHandler = async () => {
         console.error('Login');
     };
 
     const [showPassword, setShowPassword] = useState(false);
+
     const handleClickShowPassword = () => {
         setShowPassword(!showPassword);
     };
@@ -56,6 +59,33 @@ const FirebaseLogin = ({ ...others }) => {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+
+    const handleLogin = (values) => {
+        localStorage.clear();
+        const url = "http://13.246.166.173/api/login-api/";
+        const header = new Headers({
+            Accept: "application/json",
+            "Content-Type": "application/json",
+        });
+        fetch(url, {
+            method: "POST",
+            headers: header,
+            body: JSON.stringify(values),
+        })
+        .then(response => response.json())
+        .then((data) => {
+            console.log('====================================');
+            console.log("Login Response:", data);
+            console.log('====================================');
+            if (data.token) {
+                localStorage.setItem("user", JSON.stringify(data.user_data));
+                localStorage.setItem("token", data.token);
+                navigate("/");
+            }
+
+        })
+        .catch(error => console.log("Error:", error));
+    }
 
     return (
         <>
@@ -113,15 +143,15 @@ const FirebaseLogin = ({ ...others }) => {
                 </Grid>
                 <Grid item xs={12} container alignItems="center" justifyContent="center">
                     <Box sx={{ mb: 2 }}>
-                        <Typography variant="subtitle1">Sign in with Email address</Typography>
+                        <Typography variant="subtitle1">Sign in with Email Address</Typography>
                     </Box>
                 </Grid>
             </Grid>
 
             <Formik
                 initialValues={{
-                    email: 'info@codedthemes.com',
-                    password: '123456',
+                    email: 'centtravy@gmail.com',
+                    password: 'Numb1997',
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
@@ -134,6 +164,10 @@ const FirebaseLogin = ({ ...others }) => {
                             setStatus({ success: true });
                             setSubmitting(false);
                         }
+                        console.log('====================================');
+                        console.log("Submitting:", values);
+                        console.log('====================================');
+                        handleLogin(values);
                     } catch (err) {
                         console.error(err);
                         if (scriptedRef.current) {
@@ -146,6 +180,25 @@ const FirebaseLogin = ({ ...others }) => {
             >
                 {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                     <form noValidate onSubmit={handleSubmit} {...others}>
+                        {/* <FormControl fullWidth error={Boolean(touched.username && errors.username)} sx={{ ...theme.typography.customInput }}>
+                            <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
+                            <OutlinedInput
+                                id="outlined-adornment-email-login"
+                                type="text"
+                                value={values.username}
+                                name="username"
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                label="Email Address / Username"
+                                inputProps={{}}
+                            />
+                            {touched.username && errors.username && (
+                                <FormHelperText error id="standard-weight-helper-text-email-login">
+                                    {errors.username}
+                                </FormHelperText>
+                            )}
+                        </FormControl> */}
+
                         <FormControl fullWidth error={Boolean(touched.email && errors.email)} sx={{ ...theme.typography.customInput }}>
                             <InputLabel htmlFor="outlined-adornment-email-login">Email Address / Username</InputLabel>
                             <OutlinedInput

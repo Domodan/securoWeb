@@ -35,8 +35,8 @@ ShadowBox.propTypes = {
 // ============================|| UTILITIES SHADOW ||============================ //
 
 const UtilitiesShadow = () => (
-    <MainCard title="Basic Shadow" secondary={<SecondaryAction link="https://next.material-ui.com/system/shadows/" />}>
-        <Grid container spacing={gridSpacing}>
+    <MainCard title="Reports" secondary={<SecondaryAction link="https://next.material-ui.com/system/shadows/" />}>
+        {/* <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
                 <SubCard title="Basic Shadow">
                     <Grid container spacing={gridSpacing}>
@@ -118,7 +118,7 @@ const UtilitiesShadow = () => (
                     </Grid>
                 </SubCard>
             </Grid>
-        </Grid>
+        </Grid> */}
     </MainCard>
 );
 

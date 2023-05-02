@@ -1,21 +1,30 @@
 // assets
-import { IconTypography, IconPalette, IconShadow, IconWindmill } from '@tabler/icons-react';
+import { IconTypography, IconPalette, IconShadow, IconWindmill, IconWallet } from '@tabler/icons-react';
 
 // constant
 const icons = {
     IconTypography,
     IconPalette,
     IconShadow,
-    IconWindmill
+    IconWindmill,
+    IconWallet
 };
 
 // ==============================|| ACCOUNT MENU ITEMS ||============================== //
 
 const account = {
     id: 'account',
-    title: 'Accounts',
+    title: 'Transactions',
     type: 'group',
     children: [
+        {
+            id: 'wallet',
+            title: 'Wallet',
+            type: 'item',
+            url: '/wallet',
+            icon: icons.IconWallet,
+            breadcrumbs: false
+        },
         {
             id: 'util-typography',
             title: 'Deposit',

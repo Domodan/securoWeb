@@ -1,8 +1,8 @@
 // assets
-import { IconBrandChrome, IconHelp } from '@tabler/icons-react';
+import { IconBrandChrome, IconHelp, IconWallet } from '@tabler/icons-react';
 
 // constant
-const icons = { IconBrandChrome, IconHelp };
+const icons = { IconBrandChrome, IconHelp, IconWallet };
 
 // ==============================|| SAMPLE PAGE & DOCUMENTATION MENU ITEMS ||============================== //
 
@@ -14,8 +14,8 @@ const other = {
             id: 'sample-page',
             title: 'Others',
             type: 'item',
-            url: '/sample-page',
-            icon: icons.IconBrandChrome,
+            url: '/wallet',
+            icon: icons.IconWallet,
             breadcrumbs: false
         },
         // {

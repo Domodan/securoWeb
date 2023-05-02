@@ -10,8 +10,8 @@ import { gridSpacing } from '../../store/constant';
 // ==============================|| TYPOGRAPHY ||============================== //
 
 const Typography = () => (
-    <MainCard title="Basic Typography" secondary={<SecondaryAction link="https://next.material-ui.com/system/typography/" />}>
-        <Grid container spacing={gridSpacing}>
+    <MainCard title="Deposit" secondary={<SecondaryAction link="https://next.material-ui.com/system/typography/" />}>
+        {/* <Grid container spacing={gridSpacing}>
             <Grid item xs={12} sm={6}>
                 <SubCard title="Heading">
                     <Grid container direction="column" spacing={1}>
@@ -119,7 +119,7 @@ const Typography = () => (
                     </Grid>
                 </SubCard>
             </Grid>
-        </Grid>
+        </Grid> */}
     </MainCard>
 );
 

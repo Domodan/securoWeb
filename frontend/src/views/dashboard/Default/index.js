@@ -16,27 +16,56 @@ import { gridSpacing } from '../../../store/constant';
 
 const Dashboard = () => {
     const [isLoading, setLoading] = useState(true);
+    const [balance, setBalance] = useState(500.00);
+    const [expenditure, setExpenditure] = useState(961);
+    const [income, setIncome] = useState(204);
+    const [savings, setSavings] = useState(201);
+    const user = JSON.parse(localStorage.getItem("user"));
+
     useEffect(() => {
         setLoading(false);
-    }, []);
+        // const token = localStorage.getItem("token");
+        const url = `http://13.246.166.173/api/wallets/${user.id}`;
+        // const header = new Headers({
+        //     Accept: "application/json",
+        //     "Content-Type": "application/json",
+        //     "Authorization": `Bearer ${token}`,
+        // });
+        fetch(url)
+        .then(response => response.json())
+        .then((data) => {
+            if (data?.success === "True") {
+                const wallet_data = data.data
+                if (wallet_data.length === 1) {
+                    const wallet = wallet_data[0];
+                    setBalance(wallet.available_balance);
+                    setSavings(wallet.available_balance);
+                    setExpenditure(971);
+                    setIncome(205);
+                    localStorage.setItem("wallet_id", wallet.wallet_id);
+                }
+            }
+        })
+        .catch(error => console.error(error));
+    }, [user]);
 
     return (
         <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
                 <Grid container spacing={gridSpacing}>
                     <Grid item lg={4} md={6} sm={6} xs={12}>
-                        <EarningCard isLoading={isLoading} />
+                        <EarningCard isLoading={isLoading} balance={balance} />
                     </Grid>
                     <Grid item lg={4} md={6} sm={6} xs={12}>
-                        <TotalOrderLineChartCard isLoading={isLoading} />
+                        <TotalOrderLineChartCard isLoading={isLoading} expenditure={expenditure} />
                     </Grid>
                     <Grid item lg={4} md={12} sm={12} xs={12}>
                         <Grid container spacing={gridSpacing}>
                             <Grid item sm={6} xs={12} md={6} lg={12}>
-                                <TotalIncomeDarkCard isLoading={isLoading} />
+                                <TotalIncomeDarkCard isLoading={isLoading} income={income} />
                             </Grid>
                             <Grid item sm={6} xs={12} md={6} lg={12}>
-                                <TotalIncomeLightCard isLoading={isLoading} />
+                                <TotalIncomeLightCard isLoading={isLoading} savings={savings} />
                             </Grid>
                         </Grid>
                     </Grid>

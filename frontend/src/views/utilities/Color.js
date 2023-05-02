@@ -57,8 +57,10 @@ ColorBox.propTypes = {
 // ===============================|| UI COLOR ||=============================== //
 
 const UIColor = () => (
-    <MainCard title="Color Palette" secondary={<SecondaryAction link="https://next.material-ui.com/system/palette/" />}>
-        <Grid container spacing={gridSpacing}>
+    
+    <MainCard title="Withdraw" secondary={<SecondaryAction link="https://next.material-ui.com/system/palette/" />}>
+        
+        {/* <Grid container spacing={gridSpacing}>
             <Grid item xs={12}>
                 <SubCard title="Primary Color">
                     <Grid container spacing={gridSpacing}>
@@ -220,7 +222,7 @@ const UIColor = () => (
                     </Grid>
                 </SubCard>
             </Grid>
-        </Grid>
+        </Grid> */}
     </MainCard>
 );
 

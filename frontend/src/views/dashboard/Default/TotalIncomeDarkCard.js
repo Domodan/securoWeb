@@ -41,7 +41,7 @@ const CardWrapper = styled(MainCard)(({ theme }) => ({
 
 // ==============================|| DASHBOARD - TOTAL INCOME DARK CARD ||============================== //
 
-const TotalIncomeDarkCard = ({ isLoading }) => {
+const TotalIncomeDarkCard = ({ isLoading, income }) => {
     const theme = useTheme();
 
     return (
@@ -74,7 +74,7 @@ const TotalIncomeDarkCard = ({ isLoading }) => {
                                     }}
                                     primary={
                                         <Typography variant="h4" sx={{ color: '#fff' }}>
-                                            $204k
+                                            UGX {income}
                                         </Typography>
                                     }
                                     secondary={
