@@ -24,8 +24,10 @@ class ObtainTokenView(views.APIView):
         password = serializer.validated_data.get('password')
 
         user = UsersModel.objects.filter(email=email_or_phone_number).first()
+        serializer_class=UserSerializer(user)
         if user is None:
             user = UsersModel.objects.filter(phone_number=email_or_phone_number).first()
+            
 
         if user is None or not user.check_password(password):
             return Response({'message': 'Invalid credentials'}, status=status.HTTP_400_BAD_REQUEST)
@@ -33,12 +35,12 @@ class ObtainTokenView(views.APIView):
         # Generate the JWT token
         jwt_token = JWTAuthentication.create_jwt(user)
 
-        return Response({'token': jwt_token})
+        return Response({'token': jwt_token,'user_data' : serializer_class.data})
 
 #Class to Manage Transaction Types
 class ProfilesApi(views.APIView):
-    authentication_class = JSONWebTokenAuthentication
-    permission_classes = (IsAdminUser,)
+    # authentication_class = JSONWebTokenAuthentication
+    # permission_classes = (IsAdminUser,)
     #authentication_class = JSONWebTokenAuthentication
     def post(self,request):
         user=request.user
